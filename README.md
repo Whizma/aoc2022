@@ -1,4 +1,4 @@
-# aoc2022
+# Advent of Code 2022
 Slow and incomprehensible java solutions
 
 <!--- advent_readme_stars table --->
