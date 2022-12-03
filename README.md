@@ -1,4 +1,6 @@
 # aoc2022
+Slow and incomprehensible java solutions
+
 <!--- advent_readme_stars table --->
 ## 2022 Results
 
@@ -8,4 +10,3 @@
 | [Day 2](https://adventofcode.com/2022/day/2) | ⭐ | ⭐ |
 | [Day 3](https://adventofcode.com/2022/day/3) | ⭐ | ⭐ |
 <!--- advent_readme_stars table --->
-Slow and incomprehensible java solutions
