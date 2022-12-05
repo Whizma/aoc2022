@@ -130,6 +130,6 @@ public class day5 {
         for (int i = 0; i < stacks.length; i++) {
         //    System.out.print(stacks[i].peek());
         }
-        // System.out.println(" ");
+        //System.out.println(" ");
     }
 }
