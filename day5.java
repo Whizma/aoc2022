@@ -5,14 +5,13 @@ import java.util.*;
 
 public class day5 {
     public static void main(String[] args) throws IOException, InterruptedException {
-        partTwo();
         partOne();
+        partTwo();
     }
 
     public static void partTwo() throws IOException, InterruptedException {
         FileReader fr = new FileReader("input/day5.txt");
         BufferedReader br = new BufferedReader(fr);
-        String[] strings = new String[8];
         char[][] matrix = new char[8][9];
         Stack[] stacks = new Stack[9];
         for (int i = 0; i < stacks.length; i++) {
@@ -29,7 +28,6 @@ public class day5 {
         }
         // Put matrix data into stacks
         for (int row = 7; row >= 0; row--) {
-            char[] line = matrix[row];
             for (int col = 0; col <= 8; col++) {
                 // Ignore unknown characters/nulls
                 if (Character.isLetter(matrix[row][col])) {
@@ -74,12 +72,13 @@ public class day5 {
             }
         }
         System.out.println(" ");
+        fr.close();
+        br.close();
     }
 
     public static void partOne() throws IOException, InterruptedException {
         FileReader fr = new FileReader("input/day5.txt");
         BufferedReader br = new BufferedReader(fr);
-        String[] strings = new String[8];
         char[][] matrix = new char[8][9];
         Stack[] stacks = new Stack[9];
         for (int i = 0; i < stacks.length; i++) {
@@ -127,5 +126,6 @@ public class day5 {
             System.out.print(stacks[i].peek());
         }
         System.out.println(" ");
+        br.close();
     }
 }
