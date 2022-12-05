@@ -5,8 +5,15 @@ import java.util.*;
 
 public class day5 {
     public static void main(String[] args) throws IOException, InterruptedException {
-        partOne();
-        partTwo();
+        long elapsedTimeSum = 0;
+        for (int i = 0; i < 1000; i++){
+            long startTime = System.nanoTime();
+            partOne();
+            partTwo();
+            long elapsedTime = System.nanoTime() - startTime;
+            elapsedTimeSum += elapsedTime;
+        }
+        System.out.println("Average execution time (µs): " + elapsedTimeSum/1000000);
     }
 
     public static void partTwo() throws IOException, InterruptedException {
@@ -65,15 +72,13 @@ public class day5 {
             }
             temp.clear();
         }
-        System.out.print("Part Two: ");
+        // System.out.print("Part Two: ");
         for (int i = 0; i < stacks.length; i++) {
             if (!stacks[i].empty()){
-                System.out.print(stacks[i].peek());
+                // System.out.print(stacks[i].peek());
             }
         }
-        System.out.println(" ");
-        fr.close();
-        br.close();
+        // System.out.println(" ");
     }
 
     public static void partOne() throws IOException, InterruptedException {
@@ -121,11 +126,10 @@ public class day5 {
                 }
             }
         }
-        System.out.print("Part one: ");
+        // System.out.print("Part one: ");
         for (int i = 0; i < stacks.length; i++) {
-            System.out.print(stacks[i].peek());
+        //    System.out.print(stacks[i].peek());
         }
-        System.out.println(" ");
-        br.close();
+        // System.out.println(" ");
     }
 }
