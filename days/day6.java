@@ -1,3 +1,5 @@
+package days;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -34,6 +36,7 @@ public class day6 {
     }
     br.close();
   }
+
   private static void partTwo() throws IOException {
     BufferedReader br = new BufferedReader(new FileReader("input/day6.txt"));
     char[] buffer = br.readLine().toCharArray();
@@ -49,25 +52,26 @@ public class day6 {
           System.out.println(index);
           break;
         } else {
-            if (counter >= 14) {
-              set.clear();
-              counter = 0;
-            }
+          if (counter >= 14) {
+            set.clear();
+            counter = 0;
+          }
         }
       }
-      
+
       if (!foundPacket) {
         counter++;
         set.add(c);
         if (set.size() == 4) {
           foundPacket = true;
         } else {
-            if (counter >= 4) {
-              counter = 0;
-            }
+          if (counter >= 4) {
+            counter = 0;
+          }
         }
       }
       index++;
     }
+    br.close();
   }
 }
