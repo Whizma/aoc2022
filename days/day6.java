@@ -8,38 +8,44 @@ import java.util.Set;
 
 public class day6 {
   public static void main(String[] args) throws IOException {
-    System.out.print("Part one: ");
-    partOne();
-    System.out.print("Part two: ");
-    partTwo();
+    long elapsedTimeSum = 0;
+    for (int i = 0; i < 1000; i++) {
+        long startTime = System.nanoTime();
+        System.out.println("Part one: " + partOne(4));
+        System.out.println("Part two: " + partTwo(4, 14)); 
+        long elapsedTime = System.nanoTime() - startTime;
+        elapsedTimeSum += elapsedTime;
+    }
+    System.out.println("Average: " + elapsedTimeSum/1000000);
   }
 
-  private static void partOne() throws IOException {
+  private static int partOne(int size) throws IOException {
     BufferedReader br = new BufferedReader(new FileReader("input/day6.txt"));
     char[] buffer = br.readLine().toCharArray();
+    br.close();
     Set<Character> set = new HashSet<Character>();
     int counter = 0;
     int index = 1;
     for (Character c : buffer) {
       set.add(c);
       counter++;
-      if (set.size() == 4) {
-        System.out.println(index);
-        break;
+      if (set.size() == size) {
+        return index;
       } else {
-        if (counter >= 4) {
+        if (counter >= size) {
           set.clear();
           counter = 0;
         }
         index++;
       }
     }
-    br.close();
+    return 0;
   }
 
-  private static void partTwo() throws IOException {
+  private static int partTwo(int packetSize, int messageSize) throws IOException {
     BufferedReader br = new BufferedReader(new FileReader("input/day6.txt"));
     char[] buffer = br.readLine().toCharArray();
+    br.close();
     Set<Character> set = new HashSet<Character>();
     int index = 1;
     int counter = 0;
@@ -48,11 +54,10 @@ public class day6 {
       if (foundPacket) {
         counter++;
         set.add(c);
-        if (set.size() == 14) {
-          System.out.println(index);
-          break;
+        if (set.size() == messageSize) {
+          return index;
         } else {
-          if (counter >= 14) {
+          if (counter >= messageSize) {
             set.clear();
             counter = 0;
           }
@@ -62,16 +67,16 @@ public class day6 {
       if (!foundPacket) {
         counter++;
         set.add(c);
-        if (set.size() == 4) {
+        if (set.size() == packetSize) {
           foundPacket = true;
         } else {
-          if (counter >= 4) {
+          if (counter >= packetSize) {
             counter = 0;
           }
         }
       }
       index++;
     }
-    br.close();
+    return 0;
   }
 }
