@@ -18,13 +18,9 @@ public class day6 {
     Set<Character> set = new HashSet<Character>();
     int counter = 0;
     int index = 1;
-    // kolla om par av fyra är unika.
     for (Character c : buffer) {
-      // lägger till i mängd
       set.add(c);
-      // räknar upp antal bokstäver
       counter++;
-      // kollar om vi har fyra bokstäver i settet
       if (set.size() == 4) {
         System.out.println(index);
         break;
@@ -35,7 +31,6 @@ public class day6 {
         }
         index++;
       }
-      // System.out.println(counter + " " + index + " " + set.toString());
     }
     br.close();
   }
@@ -47,10 +42,8 @@ public class day6 {
     int index = 1;
     int counter = 0;
     boolean foundPacket = false;
-    // kolla om par av fyra är unika.
     for (Character c : buffer) {
       if (foundPacket) {
-        // räknar upp antal bokstäver
         counter++;
         set.add(c);
         if (set.size() == 14) {
