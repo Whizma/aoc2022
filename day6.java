@@ -34,7 +34,6 @@ public class day6 {
     }
     br.close();
   }
-
   private static void partTwo() throws IOException {
     BufferedReader br = new BufferedReader(new FileReader("input/day6.txt"));
     char[] buffer = br.readLine().toCharArray();
@@ -56,6 +55,7 @@ public class day6 {
             }
         }
       }
+      
       if (!foundPacket) {
         counter++;
         set.add(c);
