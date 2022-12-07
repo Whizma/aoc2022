@@ -10,13 +10,13 @@ public class day6 {
   public static void main(String[] args) throws IOException {
     long elapsedTimeSum = 0;
     for (int i = 0; i < 1000; i++) {
-        long startTime = System.nanoTime();
-        System.out.println("Part one: " + partOne(4));
-        System.out.println("Part two: " + partTwo(4, 14)); 
-        long elapsedTime = System.nanoTime() - startTime;
-        elapsedTimeSum += elapsedTime;
+      long startTime = System.nanoTime();
+      System.out.println("Part one: " + partOne(4));
+      System.out.println("Part two: " + partTwo(4, 14));
+      long elapsedTime = System.nanoTime() - startTime;
+      elapsedTimeSum += elapsedTime;
     }
-    System.out.println("Average: " + elapsedTimeSum/1000000);
+    System.out.println("Average: " + elapsedTimeSum / 1000000);
   }
 
   private static int partOne(int size) throws IOException {
