@@ -20,16 +20,16 @@ public class day9 {
     int xTail = 0;
     int yTail = 0;
     HashSet<List<Integer>> visited = new HashSet<>();
-    while((currentLine = br.readLine()) != null) {
+    while ((currentLine = br.readLine()) != null) {
       String[] input = currentLine.split(" ");
       int distance = Integer.parseInt(input[1]);
       String direction = input[0];
       // If the head is ever two steps directly
-      // up, down, left, or right from the tail, 
-      // the tail must also move one step in that direction 
+      // up, down, left, or right from the tail,
+      // the tail must also move one step in that direction
       // so it remains close enough:
-      // Otherwise, if the head and tail aren't touching and 
-      // aren't in the same row or column, 
+      // Otherwise, if the head and tail aren't touching and
+      // aren't in the same row or column,
       // the tail always moves one step diagonally to keep up
       for (int i = 0; i < distance; i++) {
         if (direction.equals("L")) {
@@ -81,22 +81,22 @@ public class day9 {
           }
         }
         if (direction.equals("D")) {
-            yHead--;
-            // om samma kolumn, flytta tail nedåt i y-led
-            if (xHead == xTail) {
-              if (separateTen(xHead, yHead, xTail, yTail)) {
-                yTail--;
-              }
+          yHead--;
+          // om samma kolumn, flytta tail nedåt i y-led
+          if (xHead == xTail) {
+            if (separateTen(xHead, yHead, xTail, yTail)) {
+              yTail--;
             }
-            // annars flytta nedåt i y-led och ++ eller -- i x-led
-            else {
-              if (separateTen(xHead, yHead, xTail, yTail)) {
-                yTail--;
-                xTail = xHead;
-              }
+          }
+          // annars flytta nedåt i y-led och ++ eller -- i x-led
+          else {
+            if (separateTen(xHead, yHead, xTail, yTail)) {
+              yTail--;
+              xTail = xHead;
             }
+          }
         }
-        visited.add(List.of(xTail,yTail));
+        visited.add(List.of(xTail, yTail));
       }
     }
     System.out.println(visited.size());
@@ -109,16 +109,16 @@ public class day9 {
     int xTail = 0;
     int yTail = 0;
     HashSet<List<Integer>> visited = new HashSet<>();
-    while((currentLine = br.readLine()) != null) {
+    while ((currentLine = br.readLine()) != null) {
       String[] input = currentLine.split(" ");
       int distance = Integer.parseInt(input[1]);
       String direction = input[0];
       // If the head is ever two steps directly
-      // up, down, left, or right from the tail, 
-      // the tail must also move one step in that direction 
+      // up, down, left, or right from the tail,
+      // the tail must also move one step in that direction
       // so it remains close enough:
-      // Otherwise, if the head and tail aren't touching and 
-      // aren't in the same row or column, 
+      // Otherwise, if the head and tail aren't touching and
+      // aren't in the same row or column,
       // the tail always moves one step diagonally to keep up
       for (int i = 0; i < distance; i++) {
         if (direction.equals("L")) {
@@ -170,30 +170,32 @@ public class day9 {
           }
         }
         if (direction.equals("D")) {
-            yHead--;
-            // om samma kolumn, flytta tail nedåt i y-led
-            if (xHead == xTail) {
-              if (separate(xHead, yHead, xTail, yTail)) {
-                yTail--;
-              }
+          yHead--;
+          // om samma kolumn, flytta tail nedåt i y-led
+          if (xHead == xTail) {
+            if (separate(xHead, yHead, xTail, yTail)) {
+              yTail--;
             }
-            // annars flytta nedåt i y-led och ++ eller -- i x-led
-            else {
-              if (separate(xHead, yHead, xTail, yTail)) {
-                yTail--;
-                xTail = xHead;
-              }
+          }
+          // annars flytta nedåt i y-led och ++ eller -- i x-led
+          else {
+            if (separate(xHead, yHead, xTail, yTail)) {
+              yTail--;
+              xTail = xHead;
             }
+          }
         }
-        visited.add(List.of(xTail,yTail));
+        visited.add(List.of(xTail, yTail));
       }
     }
     System.out.println(visited.size());
   }
+
   private static boolean separate(int xHead, int yHead, int xTail, int yTail) {
     return Math.abs(xHead - xTail) > 1 || Math.abs(yHead - yTail) > 1;
-  } 
+  }
+
   private static boolean separateTen(int xHead, int yHead, int xTail, int yTail) {
     return Math.abs(xHead - xTail) > 10 || Math.abs(yHead - yTail) > 10;
-  } 
+  }
 }
