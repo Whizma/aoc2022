@@ -1,12 +1,9 @@
 package days;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 
 public class day8 {
   public static void main(String[] args) throws IOException {
@@ -59,7 +56,7 @@ public class day8 {
         return false;
       }
     }
-    return true;  
+    return true;
   }
 
   public static boolean checkSouth(int[][] trees, int row, int col) {
@@ -73,88 +70,89 @@ public class day8 {
   }
 
   public static boolean checkTreeIsVisible(int[][] trees, int row, int col) {
-  return checkWest(trees, row, col) || 
-         checkEast(trees, row, col) || 
-         checkNorth(trees, row, col) || 
-         checkSouth(trees, row, col);
+    return checkWest(trees, row, col)
+        || checkEast(trees, row, col)
+        || checkNorth(trees, row, col)
+        || checkSouth(trees, row, col);
   }
 
   public static int countVisibleTrees(int[][] trees) {
     int visibleTrees = 0;
     for (int x = 0; x < 99; x++) {
-        for (int y = 0; y < 99; y++) {
-            if (checkTreeIsVisible(trees, x, y)) {
-                visibleTrees++;
-            }
+      for (int y = 0; y < 99; y++) {
+        if (checkTreeIsVisible(trees, x, y)) {
+          visibleTrees++;
         }
+      }
     }
     return visibleTrees;
   }
 
   private static int getHighestScenicScore(int[][] trees) {
-        int highestScore = 0;
-        for (int row = 0; row < 99; row++) {
-            for (int col = 0; col < 99; col++) {
-                int scenicScore = getScenicScore(trees, row, col);
-                if (scenicScore > highestScore) {
-                    highestScore = scenicScore;
-                }
-            }
+    int highestScore = 0;
+    for (int row = 0; row < 99; row++) {
+      for (int col = 0; col < 99; col++) {
+        int scenicScore = getScenicScore(trees, row, col);
+        if (scenicScore > highestScore) {
+          highestScore = scenicScore;
         }
-        return highestScore;
+      }
     }
+    return highestScore;
+  }
 
-    private static int getScenicScore(int[][] trees, int row, int col) {
-        return getScenicWest(trees, row, col) * getScenicEast(trees, row, col) *
-                getScenicNorth(trees, row, col) * getScenicSouth(trees, row, col);
+  private static int getScenicScore(int[][] trees, int row, int col) {
+    return getScenicWest(trees, row, col)
+        * getScenicEast(trees, row, col)
+        * getScenicNorth(trees, row, col)
+        * getScenicSouth(trees, row, col);
+  }
+
+  private static int getScenicWest(int[][] trees, int row, int col) {
+    int points = 0;
+    int compareTree = trees[row][col];
+    for (int i = row - 1; i >= 0; i--) {
+      points++;
+      if (trees[i][col] >= compareTree) {
+        break;
+      }
     }
+    return points;
+  }
 
-    private static int getScenicWest(int[][] trees, int row, int col) {
-        int points = 0;
-        int compareTree = trees[row][col];
-        for (int i = row - 1; i >= 0; i--) {
-            points++;
-            if (trees[i][col] >= compareTree) {
-                break;
-            }
-        }
-        return points;
+  private static int getScenicEast(int[][] trees, int row, int col) {
+    int points = 0;
+    int compareTree = trees[row][col];
+    for (int i = row + 1; i < 99; i++) {
+      points++;
+      if (trees[i][col] >= compareTree) {
+        break;
+      }
     }
+    return points;
+  }
 
-    private static int getScenicEast(int[][] trees, int row, int col) {
-        int points = 0;
-        int compareTree = trees[row][col];
-        for (int i = row + 1; i < 99; i++) {
-            points++;
-            if (trees[i][col] >= compareTree) {
-                break;
-            }
-        }
-        return points;
+  private static int getScenicNorth(int[][] trees, int row, int col) {
+    int points = 0;
+    int compareTree = trees[row][col];
+    for (int i = col - 1; i >= 0; i--) {
+      points++;
+      if (trees[row][i] >= compareTree) {
+        break;
+      }
     }
+    return points;
+  }
 
-    private static int getScenicNorth(int[][] trees, int row, int col) {
-        int points = 0;
-        int compareTree = trees[row][col];
-        for (int i = col - 1; i >= 0; i--) {
-            points++;
-            if (trees[row][i] >= compareTree) {
-                break;
-            }
-        }
-        return points;
+  private static int getScenicSouth(int[][] trees, int row, int col) {
+    int points = 0;
+    int compareTree = trees[row][col];
+    for (int i = col + 1; i < 99; i++) {
+      points++;
+      if (trees[row][i] >= compareTree) {
+        break;
+      }
     }
-
-    private static int getScenicSouth(int[][] trees, int row, int col) {
-        int points = 0;
-        int compareTree = trees[row][col];
-        for (int i = col + 1; i < 99; i++) {
-            points++;
-            if (trees[row][i] >= compareTree) {
-                break;
-            }
-        }
-        return points;
-    }
-
+    return points;
+  }
 }

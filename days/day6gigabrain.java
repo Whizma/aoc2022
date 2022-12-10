@@ -39,10 +39,13 @@ public class day6gigabrain {
     for (int i = 0; i < s.length(); i++) {
       Set<Integer> chars =
           Set.copyOf(
-              s.substring(i, i + size) // returns a set containing a string of the elements from i to i + size
-                .chars() // returns an IntStream
-                .boxed() // returns a elements boxed to an integer
-                .toList()); // parses to list
+              s.substring(
+                      i,
+                      i + size) // returns a set containing a string of the elements from i to i +
+                  // size
+                  .chars() // returns an IntStream
+                  .boxed() // returns a elements boxed to an integer
+                  .toList()); // parses to list
       if (chars.size() == size) {
         return i + size;
       }
