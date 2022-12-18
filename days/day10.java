@@ -25,16 +25,15 @@ public class day10 {
         cycle++;
         result += getSignalStrength(cycle, registry);
         cycle++;
-        registry+=Integer.parseInt(pog[1]);
+        registry += Integer.parseInt(pog[1]);
         result += getSignalStrength(cycle, registry);
-      }
-      else {
+      } else {
         cycle++;
         result += getSignalStrength(cycle, registry);
       }
       if (cycle >= 220) {
         return result;
-      }    
+      }
     }
     br.close();
     return result;
@@ -68,15 +67,14 @@ public class day10 {
           rowIndex++;
         }
         cycle++;
-        registry+=Integer.parseInt(pog[1]);
+        registry += Integer.parseInt(pog[1]);
         currentRow.append(getDrawingString(registry - 1, cycle));
         if (cycle % 40 == 0) {
           crt[rowIndex] = currentRow.toString();
           currentRow = new StringBuilder();
           rowIndex++;
         }
-      } 
-      else {
+      } else {
         cycle++;
         currentRow.append(getDrawingString(registry - 1, cycle));
         if (cycle % 40 == 0) {
@@ -88,11 +86,11 @@ public class day10 {
     }
     br.close();
     return getAndPrintResult(crt);
-    }
+  }
 
   private static String getAndPrintResult(String[] crt) {
     StringBuilder builder = new StringBuilder();
-    for (String rowIndex: crt) {
+    for (String rowIndex : crt) {
       System.out.println(rowIndex);
       builder.append(rowIndex).append("\n");
     }
@@ -102,8 +100,8 @@ public class day10 {
   private static String getDrawingString(int spriteStart, int cycle) {
     int currentCol = ((cycle) % 40) - 1;
     if (currentCol >= spriteStart && currentCol <= (spriteStart + 2)) {
-        return "#";
+      return "#";
     }
     return ".";
-}
+  }
 }
