@@ -5,6 +5,8 @@ import java.util.Collections;
 
 public class day11 {
 
+  static ArrayList<Monkey> monkeys;
+
   public static void main(String[] args) {
     System.out.println("Part one: " + partOne());
     System.out.println("Part two: " + partTwo());
@@ -15,14 +17,27 @@ public class day11 {
   }
 
   private static int partOne() {
-    execute(monkeyBuilder());
+    monkeys = monkeyBuilder();
+    execute();
     return 0;
   }
 
-  private static void execute(ArrayList<Monkey> monkeys) {
+  private static void execute() {
     for (int i = 0; i < 20; i++) {
       for (Monkey m : monkeys) {
-        m.execute();
+        if (m.items.size() == 0) {
+          return;
+        }
+        for (int j = 0; j < m.items.size(); j++) {
+          m.items.get(j) = (m.items.get(j) / 3);
+          if (m.test(j)) {
+            monkeys.get(m.trueThrow).items.add(m.items.get(j));
+            m.items.remove(j);
+          } else {
+            monkeys.get(m.falseThrow).items.add(m.items.get(j));
+            m.items.remove(j);
+          }
+        }
       }
     }
   }
@@ -39,15 +54,15 @@ public class day11 {
     ArrayList<Integer> items = new ArrayList<Integer>();
     Collections.addAll(items, 71, 86);
     m0.buildMonkey(items, 6, 7, 19, "* 13");
-   
+
     items = new ArrayList<Integer>();
     Collections.addAll(items, 66, 50, 90, 53, 88, 85);
     m1.buildMonkey(items, 5, 4, 2, "+ 3");
-    
+
     items = new ArrayList<Integer>();
     Collections.addAll(items, 97, 54, 89, 62, 84, 80, 63);
     m2.buildMonkey(items, 4, 1, 13, "+ 6");
-   
+
     items = new ArrayList<Integer>();
     Collections.addAll(items, 82, 97, 56, 92);
     m3.buildMonkey(items, 6, 0, 5, "* old");
@@ -67,7 +82,7 @@ public class day11 {
     items = new ArrayList<Integer>();
     Collections.addAll(items, 55);
     m7.buildMonkey(items, 55, 2, 3, "+ 7");
-    
+
     ArrayList<Monkey> monkeys = new ArrayList<Monkey>();
     Collections.addAll(monkeys, m0, m1, m2, m3, m4, m5, m6, m7);
     return monkeys;
@@ -82,11 +97,7 @@ public class day11 {
     int testDivisor;
 
     public void buildMonkey(
-        ArrayList<Integer> items,
-        int trueThrow,
-        int falseThrow,
-        int testDivisor,
-        String op) {
+        ArrayList<Integer> items, int trueThrow, int falseThrow, int testDivisor, String op) {
       // this
       this.items = items;
       this.op = op;
@@ -101,16 +112,13 @@ public class day11 {
         int itemNumber = Integer.parseInt(ops[1]);
         if (ops[0].equals("+")) {
           return old + itemNumber;
-        }
-        else {
+        } else {
           return old * itemNumber;
         }
-      }
-      catch (Exception e) {
+      } catch (Exception e) {
         if (ops[0].equals("+")) {
           return old + old;
-        }
-        else {
+        } else {
           return old * old;
         }
       }
@@ -118,22 +126,6 @@ public class day11 {
 
     public boolean test(int itemNumber) {
       return itemNumber % this.testDivisor == 0;
-    }
-
-    public void throwTo(Monkey m, int itemNumber) {
-      m.items.add(this.items.get(itemNumber));
-      this.items.remove(itemNumber);
-    }
-
-    public void execute() {
-      if (this.items.size() == 0) {
-        return;
-      }
-      for (int i = 0; i < this.items.size(); i++) {
-        if (this.test(this.items.get(i))) {
-          this.throwTo(this, this.trueThrow);
-        }
-      }
     }
   }
 }
